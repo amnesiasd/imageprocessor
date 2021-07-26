@@ -1,5 +1,3 @@
-const myFunc = (num: number): number => {
-  return num*num*num;
-}
+import {myFunc} from "./utilities/indexUtils";
 
-export default myFunc;
+console.log(myFunc(6));
