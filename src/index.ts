@@ -1,3 +1,7 @@
-import {myFunc} from "./utilities/indexUtils";
+import {getImages} from "./utilities/indexUtils";
 
-console.log(myFunc(6));
+const displayImages = async () => {
+  const imgs = await getImages();
+  console.log(imgs);
+} 
+displayImages();

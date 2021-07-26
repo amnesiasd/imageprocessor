@@ -1,5 +1,14 @@
-import {myFunc} from '../utilities/indexUtils';
+import {getImages} from '../utilities/indexUtils';
 
-it('expect myFunc(2) to equal 8', () => {
-  expect(myFunc(2)).toEqual(8);
+describe('Test for image files', () => {
+  let response = Array<string>();
+  beforeAll(async () => {
+    response = await getImages();
+  }),  
+  it('should contain 5 files', () => {    
+    expect(response.length).toBe(5);
+  }),
+  it('should be a jpg file', () => {
+    expect(response[0].substr(-4)).toBe('.jpg');
+  })
 });
