@@ -39,42 +39,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var indexUtils_1 = require("../utilities/indexUtils");
-var supertest_1 = __importDefault(require("supertest"));
-var index_1 = __importDefault(require("../index"));
-describe('Test for image files', function () {
-    var response = Array();
-    beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
+exports.resizeImage = void 0;
+var sharp_1 = __importDefault(require("sharp"));
+var resizeImage = function (img, dir) {
+    return __awaiter(this, void 0, void 0, function () {
+        var file, filePath;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, indexUtils_1.getImages()];
+                case 0:
+                    file = img.fileName.substr(0, img.fileName.length - 4);
+                    filePath = "test";
+                    return [4 /*yield*/, sharp_1.default("src\\routes\\api\\images\\" + img.fileName)
+                            .resize(Number(img.width), Number(img.height))
+                            .toFile("src\\routes\\api\\images\\" + file + "_thumb.jpg")
+                            .then(function () {
+                            filePath = dir + "\\images\\" + file + "_thumb.jpg";
+                        })];
                 case 1:
-                    response = _a.sent();
-                    return [2 /*return*/];
+                    _a.sent();
+                    return [2 /*return*/, filePath];
             }
         });
-    }); }),
-        it('should contain 5 files', function () {
-            expect(response.length).toBe(5);
-        }),
-        it('should be a jpg file', function () {
-            expect(response[0].substr(-4)).toBe('.jpg');
-        });
-});
-describe('Test for endpoint connection', function () {
-    var request = supertest_1.default(index_1.default);
-    describe('Test api routes', function () {
-        it('gets the default api route', function () { return __awaiter(void 0, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, request.get('/api')];
-                    case 1:
-                        response = _a.sent();
-                        expect(response.status).toBe(200);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
     });
-});
+};
+exports.resizeImage = resizeImage;

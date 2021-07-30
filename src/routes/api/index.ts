@@ -1,20 +1,14 @@
 import express from 'express';
 import { WebImage } from '../../interfaces/image';
-import { getImages } from '../../utilities/indexUtils';
 import { resizeImage } from '../../utilities/sharpUtils';
 
 const routes = express.Router();
-
-async function getPath(image:WebImage, dir:string) {
-  return await resizeImage(image, dir);  
-}
+routes.get('/api', (req, res) => {
+  res.send("<html><body><h2>Welcome to Image Processing</h2></body></html>");
+})
 
 routes.get('/api/images', (req, res) => {
   res.set('Cache-Control', 'public, max-age=31557600');
-  /* const getImageArray = async () => {
-    const imgs = await getImages();    
-    return imgs;
-  }; */
 
   let query = req.query;
   let image:WebImage = {
@@ -23,10 +17,17 @@ routes.get('/api/images', (req, res) => {
     height: (query.height as unknown) as number
   };
 
-  (async () => {
-    let path = await getPath(image, __dirname);
-    res.sendFile(path);
-  })(); 
+  function getPath(image:WebImage, dir:string) {
+    resizeImage(image, dir)
+    .then((path) => {
+      res.sendFile(path);
+    })
+    .catch(() => {
+      res.send("We could not locate the file you've specified. Please add image to folder or check spelling.");
+    });  
+  }; 
+
+  getPath(image, __dirname);
 });
 
 export default routes;

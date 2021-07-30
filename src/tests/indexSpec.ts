@@ -1,4 +1,7 @@
 import {getImages} from '../utilities/indexUtils';
+import supertest from 'supertest';
+import app from '../index';
+
 
 describe('Test for image files', () => {
   let response = Array<string>();
@@ -12,3 +15,15 @@ describe('Test for image files', () => {
     expect(response[0].substr(-4)).toBe('.jpg');
   })
 });
+
+describe('Test for endpoint connection', () => {
+  const request = supertest(app);
+  describe('Test api routes', () => {
+    it('gets the default api route', async () => {
+      const response = await request.get('/api');
+      expect(response.status).toBe(200);
+    })
+  })
+})
+
+
