@@ -55,7 +55,7 @@ describe('Test for image files', function () {
         });
     }); }),
         it('should contain 5 files', function () {
-            expect(response.length).toBe(5);
+            expect(response.length).not.toBeLessThan(5);
         }),
         it('should be a jpg file', function () {
             expect(response[0].substr(-4)).toBe('.jpg');

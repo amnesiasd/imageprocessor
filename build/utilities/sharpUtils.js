@@ -48,13 +48,10 @@ var resizeImage = function (img, dir) {
             switch (_a.label) {
                 case 0:
                     file = img.fileName.substr(0, img.fileName.length - 4);
-                    filePath = "test";
-                    return [4 /*yield*/, sharp_1.default("src\\routes\\api\\images\\" + img.fileName)
+                    filePath = dir + "\\images\\" + file + "_thumb_" + img.width + "x" + img.height + ".jpg";
+                    return [4 /*yield*/, sharp_1.default(dir + "\\images\\" + img.fileName)
                             .resize(Number(img.width), Number(img.height))
-                            .toFile("src\\routes\\api\\images\\" + file + "_thumb.jpg")
-                            .then(function () {
-                            filePath = dir + "\\images\\" + file + "_thumb.jpg";
-                        })];
+                            .toFile(filePath)];
                 case 1:
                     _a.sent();
                     return [2 /*return*/, filePath];

@@ -7,7 +7,7 @@ var express_1 = __importDefault(require("express"));
 var sharpUtils_1 = require("../../utilities/sharpUtils");
 var routes = express_1.default.Router();
 routes.get('/api', function (req, res) {
-    res.send("" + req.query);
+    res.send("<html><body><h2>Welcome to Image Processing</h2></body></html>");
 });
 routes.get('/api/images', function (req, res) {
     res.set('Cache-Control', 'public, max-age=31557600');
@@ -21,6 +21,9 @@ routes.get('/api/images', function (req, res) {
         sharpUtils_1.resizeImage(image, dir)
             .then(function (path) {
             res.sendFile(path);
+        })
+            .catch(function () {
+            res.send("We could not locate the file you've specified. Please add image to folder or check spelling.");
         });
     }
     ;

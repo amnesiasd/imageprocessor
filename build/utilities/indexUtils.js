@@ -49,7 +49,7 @@ var getImages = function () { return __awaiter(void 0, void 0, void 0, function 
                     switch (_b.label) {
                         case 0:
                             images = [];
-                            location = promises_1.default.readdir("./images");
+                            location = promises_1.default.readdir("././src/routes/api/images");
                             _i = 0;
                             return [4 /*yield*/, location];
                         case 1:
