@@ -25,6 +25,11 @@ describe('Test for endpoint connection', () => {
     it('gets the default images route', async () => {
       const response = await request.get('/api/images');
       expect(response.status).toBe(200);
+      expect(response.text).toContain("We could not");
+    }),    
+    it('returns could not find message if no file', async () => {
+      const response = await request.get('/api/images');
+      expect(response.text).toContain("We could not");
     });
   });
 });
