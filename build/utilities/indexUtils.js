@@ -35,35 +35,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getImages = void 0;
-var promises_1 = __importDefault(require("fs/promises"));
+var promises_1 = require("fs/promises");
 var getImages = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/, new Promise(function (resolve) { return __awaiter(void 0, void 0, void 0, function () {
-                var images, location, _i, _a, loc;
-                return __generator(this, function (_b) {
-                    switch (_b.label) {
+                var images;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
                         case 0:
                             images = [];
-                            location = promises_1.default.readdir("././src/routes/api/images");
-                            _i = 0;
-                            return [4 /*yield*/, location];
+                            return [4 /*yield*/, promises_1.readdir('././src/routes/api/images')
+                                    .then(function (locations) {
+                                    for (var _i = 0, locations_1 = locations; _i < locations_1.length; _i++) {
+                                        var loc = locations_1[_i];
+                                        images.push(loc);
+                                    }
+                                })
+                                    .catch(function (err) {
+                                    console.log(err);
+                                })];
                         case 1:
-                            _a = _b.sent();
-                            _b.label = 2;
-                        case 2:
-                            if (!(_i < _a.length)) return [3 /*break*/, 4];
-                            loc = _a[_i];
-                            images.push(loc);
-                            _b.label = 3;
-                        case 3:
-                            _i++;
-                            return [3 /*break*/, 2];
-                        case 4:
+                            _a.sent();
                             resolve(images);
                             return [2 /*return*/];
                     }

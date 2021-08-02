@@ -1,13 +1,13 @@
-import express from 'express';
+import {Router, Request, Response } from 'express';
 import { WebImage } from '../../interfaces/image';
 import { resizeImage } from '../../utilities/sharpUtils';
 
-const routes = express.Router();
+const routes: Router = Router();
 routes.get('/api', (req, res) => {
   res.send('<html><body><h2>Welcome to Image Processing</h2></body></html>');
 });
 
-routes.get('/api/images', (req, res) => {
+routes.get('/api/images', (req: Request, res: Response) => {
   res.set('Cache-Control', 'public, max-age=31557600');
 
   let query = req.query;

@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import { WebImage } from '../interfaces/image';
 
-const resizeImage = async function (img: WebImage, dir: string) {
+const resizeImage = async function (img: WebImage, dir: string):Promise<string> {
   let file = img.fileName.substr(0, img.fileName.length - 4);
   let filePath = `${dir}\\images\\${file}_thumb_${img.width}x${img.height}.jpg`;
 

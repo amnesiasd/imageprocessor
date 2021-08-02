@@ -1,12 +1,17 @@
-import fsPromise from 'fs/promises';
+import { readdir } from 'fs/promises';
 
 const getImages = async (): Promise<string[]> => {
   return new Promise(async (resolve) => {
     let images: string[] = [];
-    let location = fsPromise.readdir('././src/routes/api/images');
-    for (const loc of await location) {
-      images.push(loc);
-    }
+    await readdir('././src/routes/api/images')
+    .then(locations => {
+      for (let loc of locations) {
+        images.push(loc);
+      }      
+    }) 
+    .catch(err => {
+      console.log(err);
+    })   
     resolve(images);
   });
 };
