@@ -8,9 +8,9 @@ npm run start
 npm run test
 
 ### api endpoint from browser
-`http://localhost:3000/api`
+`http://localhost:3000/api` (*Will display welcome message*)
 
-*Will display welcome message*
+entering invalid jpg will display unknow file message
 
 ### image resize
 #### Different width's and height's can be saved for each image
@@ -20,6 +20,8 @@ npm run test
 #### Other images
 
 - encenadaport.jpg
-- icalandwaterfall,jpg
+- icelandwaterfall,jpg
 - palmtunnel.jpg
 - santamonica.jpg
+
+entering invalid jpg will display unknown file message
