@@ -1,5 +1,5 @@
 export interface WebImage {
-  fileName: string,
-  width: number,
-  height: number
-};
+  fileName: string;
+  width: number;
+  height: number;
+}
